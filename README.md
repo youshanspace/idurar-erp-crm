@@ -80,6 +80,14 @@ IDURAR is Open "Fair-Code" Source ERP / CRM (Invoice / Inventory / Accounting / 
 
 **Live App Demo** : [https://www.idurarapp.com/demo-erp-crm/](https://www.idurarapp.com/demo-erp-crm/)
 
+## Open "Fair-Code" Source ERP / CRM App
+
+IDURAR is Open "Fair-Code" Source ERP / CRM (Invoice / Inventory / Accounting / HR) Based on Mern Stack (Node.js / Express.js / MongoDb / React.js ) with Ant Design (AntD) and Redux
+
+**Live App Demo** : [https://idurarapp.com/demo/](https://idurarapp.com/demo/)
+
+`username : admin@demo.com password : admin123`
+
 ## Getting started
 
 
