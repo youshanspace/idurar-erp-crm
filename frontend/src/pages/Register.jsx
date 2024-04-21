@@ -3,26 +3,27 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-import useLanguage from '@/locale/useLanguage';
+import { register } from '@/redux/auth/actions';
+import { selectAuth } from '@/redux/auth/selectors';
 
 import { Form, Button } from 'antd';
 
-import { login } from '@/redux/auth/actions';
-import { selectAuth } from '@/redux/auth/selectors';
-import LoginForm from '@/forms/LoginForm';
+import RegisterForm from '@/forms/RegisterForm';
+
+import useLanguage from '@/locale/useLanguage';
+
 import Loading from '@/components/Loading';
 import AuthModule from '@/modules/AuthModule';
 
-const LoginPage = () => {
+const Register = () => {
   const translate = useLanguage();
   const { isLoading, isSuccess } = useSelector(selectAuth);
   const navigate = useNavigate();
-  // const size = useSize();
 
   const dispatch = useDispatch();
   const onFinish = (values) => {
-    dispatch(login({ loginData: values }));
-  };
+    dispatch(register({ registerData: values }));
+  }
 
   useEffect(() => {
     if (isSuccess) navigate('/');
@@ -33,14 +34,14 @@ const LoginPage = () => {
       <Loading isLoading={isLoading}>
         <Form
           layout="vertical"
-          name="normal_login"
+          name="signup"
           className="login-form"
           initialValues={{
             remember: true,
           }}
           onFinish={onFinish}
         >
-          <LoginForm />
+          <RegisterForm />
           <Form.Item>
             <Button
               type="primary"
@@ -49,16 +50,15 @@ const LoginPage = () => {
               loading={isLoading}
               size="large"
             >
-              {translate('Log in')}
+              {translate('Register')}
             </Button>
-            {translate('Or')} <a href="/register"> {translate('Register Now!')} </a>
+            {translate('Or')} <a href="/login"> {translate('Already Have Account Login')} </a>
           </Form.Item>
         </Form>
       </Loading>
     );
   };
+  return <AuthModule authContent={<FormContainer />} AUTH_TITLE="Sign Up" />
+}
 
-  return <AuthModule authContent={<FormContainer />} AUTH_TITLE="Sign in" />;
-};
-
-export default LoginPage;
+export default Register;
